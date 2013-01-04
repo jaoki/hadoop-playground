@@ -129,6 +129,8 @@ modify conf/oozie-site.xml
 
 ./bin/oozie admin -oozie http://localhost:11000/oozie -status
 
+export OOZIE_URL=http://localhost:11000/oozie
+
 
 Run oozie examples
 --------------------------
