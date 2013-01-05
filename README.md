@@ -23,7 +23,7 @@ ssh localhost should work
 
 Set JAVA_HOME in conf/hadoop-env.sh
 
-Modify conf/core-site.xml and add 
+Modify conf/core-site.xml
 
       <!-- OOZIE -->
       <property>
@@ -35,19 +35,9 @@ Modify conf/core-site.xml and add
         <value>users</value>
       </property>
 
-
-Modify conf/core-site.xml
-
-     <property>
+      <property>
         <name>fs.default.name</name>
         <value>hdfs://localhost:8020</value>
-      </property>
-
-vi conf/hdfs-site.xml
-
-      <property>
-        <name>dfs.replication</name>
-        <value>1</value>
       </property>
 
 vi conf/mapred-site.xml
@@ -61,8 +51,10 @@ vi conf/mapred-site.xml
 
 ./bin/start-all.sh
 
+Namenode
 http://localhost:50070 
 
+MapReduce
 http://localhost:50030
 
 
@@ -78,9 +70,7 @@ wget http://mirror.olnevhost.net/pub/apache/oozie/3.3.0/oozie-3.3.0.tar.gz
 
 ./bin/mkdistro.sh
 
-tar -xvf distro/target/oozie-3.2.0-incubating-distro.tar
-
-bin/oozie-setup.sh -hadoop 0.20.200 /grid/usr/hadoop-1.0.3 -extjs ~/tmp/ext-2.2
+tar -xvf distro/target/oozie-3.3.0-distro.tar.gz
 
 modify conf/oozie-site.xml
 
@@ -111,8 +101,6 @@ modify conf/oozie-site.xml
       221         </description>
       222     </property>
 
-
-    TODO this may not be necessary?
       224     <property>
       225         <name>oozie.service.HadoopAccessorService.hadoop.configurations</name>
       226         <value>*=/home/jaoki/hadoop-oozie/hadoop/conf,localhost:8020=/home/jaoki/hadoop-oozie/hadoop/conf,localhost:8021=/home/jaoki/hadoop-oozie/hadoop/conf</value>
@@ -127,11 +115,14 @@ modify conf/oozie-site.xml
       235     </property>
 
 
-./bin/oozie-start.sh
-
-./bin/oozie admin -oozie http://localhost:11000/oozie -status
+bin/oozie-setup.sh -hadoop 0.20.200 /grid/usr/hadoop-1.0.3 -extjs ~/tmp/ext-2.2.zip
 
 export OOZIE_URL=http://localhost:11000/oozie
+
+./bin/oozie-start.sh
+
+./bin/oozie admin -status
+
 
 
 Run oozie examples
@@ -143,8 +134,8 @@ If hdfs runs safe mode
 
 tar -xvf oozie-examples.tar
 
-./bin/hadoop dfs -put oozie-examples /home/jaoki/example
+./bin/hadoop dfs -put oozie-examples /user/jaoki/examples
 
-oozie job -run -config job.properties -oozie http://localhost:11000/oozie
+oozie job -run -config job.properties
 
 
