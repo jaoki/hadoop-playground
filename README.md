@@ -40,7 +40,7 @@ Modify conf/core-site.xml
 
      <property>
         <name>fs.default.name</name>
-        <value>hdfs://localhost:9000</value>
+        <value>hdfs://localhost:8020</value>
       </property>
 
 vi conf/hdfs-site.xml
@@ -54,7 +54,7 @@ vi conf/mapred-site.xml
 
       <property>
         <name>mapred.job.tracker</name>
-        <value>localhost:9001</value>
+        <value>localhost:8021</value>
       </property>
 
 ./bin/hadoop namenode -format
@@ -97,7 +97,7 @@ modify conf/oozie-site.xml
       
       208     <property>
       209         <name>oozie.service.HadoopAccessorService.jobTracker.whitelist</name>
-      210         <value>localhost:9001</value>
+      210         <value>localhost:8021</value>
       211         <description>
       212             Whitelisted job tracker for Oozie service.
       213         </description>
@@ -105,15 +105,17 @@ modify conf/oozie-site.xml
       215
       216     <property>
       217         <name>oozie.service.HadoopAccessorService.nameNode.whitelist</name>
-      218         <value>localhost:9000</value>
+      218         <value>localhost:8020</value>
       219         <description>
       220             Whitelisted job tracker for Oozie service.
       221         </description>
       222     </property>
-      223
+
+
+    TODO this may not be necessary?
       224     <property>
       225         <name>oozie.service.HadoopAccessorService.hadoop.configurations</name>
-      226         <value>*=/home/jaoki/hadoop-oozie/hadoop/conf,localhost:9000=/home/jaoki/hadoop-oozie/hadoop/conf,localhost:9001=/home/jaoki/hadoop-oozie/hadoop/conf</value>
+      226         <value>*=/home/jaoki/hadoop-oozie/hadoop/conf,localhost:8020=/home/jaoki/hadoop-oozie/hadoop/conf,localhost:8021=/home/jaoki/hadoop-oozie/hadoop/conf</value>
       227         <description>
       228             Comma separated AUTHORITY=HADOOP_CONF_DIR, where AUTHORITY is the HOST:PORT of
       229             the Hadoop service (JobTracker, HDFS). The wildcard '*' configuration is
