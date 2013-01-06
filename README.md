@@ -132,10 +132,33 @@ If hdfs runs safe mode
 
     ./bin/hadoop dfsadmin -safemode leave
 
+tar -xvf oozie-sharelib-3.3.0.tar.gz
+
+
 tar -xvf oozie-examples.tar
 
 ./bin/hadoop dfs -put oozie-examples /user/jaoki/examples
 
-oozie job -run -config job.properties
+oozie job -run -config ~/apps/oozie-examples/apps/pig/job.properties
 
+
+hbase
+--------------------------
+wget http://apache.petsads.us/hbase/stable/hbase-0.94.3.tar.gz
+
+Modify conf/hbase-site.xml
+
+    <property>
+      <name>hbase.rootdir</name>
+      <value>hdfs://localhost:8020/hbase</value>
+    </property>
+    <property>
+      <name>hbase.cluster.distributed</name>
+      <value>true</value>
+    </property>
+
+pig
+--------------------------
+
+wget http://mirror.cc.columbia.edu/pub/software/apache/pig/pig-0.10.0/pig-0.10.0.tar.gz
 
