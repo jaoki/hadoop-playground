@@ -162,3 +162,9 @@ pig
 
 wget http://mirror.cc.columbia.edu/pub/software/apache/pig/pig-0.10.0/pig-0.10.0.tar.gz
 
+
+for hbase
+
+    export PIG_CLASSPATH=”`${HBASE_HOME}/bin/hbase classpath`:$PIG_CLASSPATH”
+
+

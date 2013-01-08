@@ -1,8 +1,10 @@
 -- hadoop dfs -put passwd /user/jaoki
 -- run create 'test1', 'cf' in hbase shell
-register /home/jaoki/apps/hbase-0.94.3/hbase-0.94.3.jar
-register /home/jaoki/apps/hbase-0.94.3/lib/zookeeper-3.4.3.jar
-register /home/jaoki/apps/hbase-0.94.3/lib/protobuf-java-2.4.0a.jar
+%declare HBASE_HOME '/home/junaoki/apps/hbase-0.94.3'
+
+register $HBASE_HOME/hbase-0.94.3.jar
+register $HBASE_HOME/lib/zookeeper-3.4.3.jar
+register $HBASE_HOME/lib/protobuf-java-2.4.0a.jar
 
 A = load 'passwd' using PigStorage(':') AS (
 f1:chararray,
